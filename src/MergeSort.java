@@ -115,7 +115,8 @@ public class MergeSort {
                 }
                 x++;
                 /* print data for this size of input */
-                resultsWriter.printf("%12d  %15.2f %15.2f \n",inputSize, averageTimePerTrialInBatch, doublingTotal); // might as well make the columns look nice
+                resultsWriter.printf("%12d  %15.2f %15.2f \n",inputSize, averageTimePerTrialInBatch, doublingTotal); // might as well make the columns look
+                /*resultsWriter.printf("%12d  %15.2f \n",inputSize, averageTimePerTrialInBatch); // might as well make the columns look nice*/
                 resultsWriter.flush();
                 System.out.println(" ....done.");
             }
