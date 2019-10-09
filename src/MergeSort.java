@@ -170,37 +170,50 @@ public class MergeSort {
         }
 
         public static long[] mergeSortAlg(long[] list){
-
+            //divide list into two halves
+            //if list.length is less than or equal to 1 the list is either empty or
+            //has one element and can't be divided
             if(list.length <= 1){
+                //return list
                 return list;
             }
             else{
+                //set middle index as list length / 2 and set the left array with
+                //the length of the middle index
                 int mid = list.length / 2;
-
                 long[] left = new long[mid];
-                long[] right;
 
+                //create array for right side of list and if it is even, set it to the
+                //length of the middle index. if odd, set it to the length of middle
+                //index and add one to account for the odd number.
+                long[] right;
                 if(list.length % 2 == 0){
                     right = new long[mid];
                 }
                 else{
+
                     right = new long[mid+1];
                 }
-
+                //loop through the lower half of the list (array) and add it
+                //to the left array
                 for(int i = 0; i < mid; i++){
                     left[i] = list[i];
                 }
+                //loop through the upper half of the list (array) and add it
+                //to the right array
                 for(int j=0; j< right.length; j++){
                     right[j] = list[mid+j];
                 }
 
+                //create an array to hold the results of the merged array
                 long[] result = new long[list.length];
-
+                //call the function recursively to continue to populate the left and
+                //right arrays until all the numbers have been copied over
                 left = mergeSortAlg(left);
                 right = mergeSortAlg(right);
-
+                //call the merge function to merge both lists together with the values sorted
                 result = Merge(left, right);
-
+                //return the result
                 return result;
             }
         }
@@ -208,39 +221,50 @@ public class MergeSort {
 
 
     public static long[] Merge(long[] listA, long[] listB){
-
+        //declare array for mered list that equals the length of each list added together
         long[] mergedList = new long[listA.length + listB.length];
 
         int iA = 0;
         int iB = 0;
         int iM = 0;
+        //loop until iA or iB is less than the length of the list it's helping merge
         while(iA < listA.length || iB < listB.length){
+            //if count iA is less than the length of list A AND count iB is less than the legnth of list B
+            //check if the value in list A at index iA is less than the index iB in list B
             if(iA < listA.length && iB < listB.length){
                 if(listA[iA] < listB[iB]){
+                    //if true, set value at index iM in merged list to listA index iA
                     mergedList[iM] = listA[iA];
+                    //increment iA and IM
                     iA++;
                     iM++;
                 }
                 else
                 {
+                    //if false, set value at index iM in merged list to listB index iB
                     mergedList[iM] = listB[iB];
+                    //increment iB and iM
                     iB++;
                     iM++;
                 }
             }
-            else if(iA < listA.length){
+            else if(iA < listA.length){ //check to see if index iA is less than listA length
+                //if true, set merged list index iM to list A index iA
                 mergedList[iM] = listA[iA];
+                //increment iA and IM
                 iA++;
                 iM++;
             }
-            else if(iB < listB.length){
+            else if(iB < listB.length){//check to see if index iB is less than listB length
+                //if true, set merged list index iM to list B index iB
                 mergedList[iM] = listB[iB];
+                //increment iA and IM
                 iB++;
                 iM++;
             }
 
         }
-
+    //return merged list
         return mergedList;
     }
 
